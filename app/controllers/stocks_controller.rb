@@ -6,6 +6,7 @@ class StocksController < ApplicationController
   end
 
   def new
+    # @stock = Stock.new
   end
 
   def edit

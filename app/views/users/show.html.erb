@@ -48,4 +48,51 @@
   </div>
 </section>
 
-
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @user.stocks.each do |stock| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to stocks_path(stock) do %>
+                  <%= attachment_image_tag stock, :image, fallback: "no-image.png" %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <%= link_to stock_path(stock), class: "panel-block" do %>
+                    <span class="panel-icon">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    この店舗の在庫詳細を見る
+                  <% end %>
+                  <% if @user.id == current_user.id %>
+                    <%= link_to edit_stock_path(stock), class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      この内容をを編集する
+                    <% end %>
+                    <%= link_to stock_path(stock), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-trash"></i>
+                      </span>
+                      この内容をを削除する
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="content">
+                <time><%= stock.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

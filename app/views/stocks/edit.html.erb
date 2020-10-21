@@ -1,2 +1,47 @@
-<h1>Stocks#edit</h1>
-<p>Find me in app/views/stocks/edit.html.erb</p>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        在庫状況編集
+      </h1>
+    </div>
+  </div>
+</section>
+
+<% if @stock.errors.any? %>
+  <div class="notification is-danger">
+    <h2><%= pluralize(@stock.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+    <ul>
+      <% @stock.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @stock do |f| %>
+          <div class="field">
+            <%= f.label :title, "在庫名", class: "label" %>
+            <%= f.text_field :title, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :body, "在庫状況", class: "label" %>
+            <%= f.text_area :body, class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :image, "写真", class: "label" %>
+            <%= f.attachment_field :image, class: "input" %>
+          </div>
+
+          <%= f.submit '更新', class: "button is-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

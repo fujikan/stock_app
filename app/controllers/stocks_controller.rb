@@ -28,6 +28,12 @@ class StocksController < ApplicationController
     redirect_to stock_path(@stock)
   end
 
+  def destroy
+    stock = Stock.find(params[:id])
+    stock.destroy
+    redirect_to stocks_path
+  end
+
   private
   def stock_params
     params.require(:stock).permit(:title, :body, :image)

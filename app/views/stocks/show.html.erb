@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        在庫詳細
+        業務予定詳細
       </h1>
     </div>
   </div>
@@ -27,14 +27,14 @@
             <div class="content">
               <table class="table is-narrow">
                 <tr>
-                  <th>在庫状況</th>
+                  <th>詳細</th>
                 </tr>
                 <tr>
                   <td><%= simple_format @stock.body %></td>
                 </tr>
               </table>
               <% if @stock.user.id == current_user.id %>
-                <%= link_to "編集画面へ", edit_stock_path(@stock), class: "button is-primary" %>
+                <%= link_to "編集", edit_stock_path(@stock), class: "button is-primary" %>
               <% end %>
             </div>
           </div>
@@ -44,7 +44,7 @@
       <div class="column is-4">
         <article class="panel is-link">
           <p class="panel-heading">
-            By <%= @stock.user.username %>
+            <%= @stock.user.username %>
           </p>
           <div class="panel-block">
             <p class="control">
@@ -55,7 +55,7 @@
             <span class="panel-icon">
               <i class="fas fa-user" aria-hidden="true"></i>
             </span>
-            <%= @stock.user.username %> さんのページへ
+            <%= @stock.user.username %>のページへ
           <% end %>
         </article>
       </div>
